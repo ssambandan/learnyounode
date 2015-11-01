@@ -1,0 +1,31 @@
+var ht = require('http')
+var fs = require('fs')
+var readpath = 'tmp/gigamon.txt';
+chunk = '';
+
+var server = ht.createServer();
+
+
+
+server.on('request', function (req, res) {
+    // console.log ('Server Connected');
+    req.setEncoding ('utf8');
+	
+	req.on ('close', function (){
+	console.log ('connection closed');
+	});
+
+	req.on('data', function (c) {
+	res.write (c.toUpperCase());
+	
+	if (c == "") server.close();
+	});
+	
+
+
+})
+
+
+server.listen (process.argv[2], function(){
+	// console.log('I am listening')
+});

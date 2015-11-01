@@ -1,0 +1,18 @@
+ht = require('http')
+var buf = "";
+
+
+ht.get(process.argv[2], function(res) {
+
+  res.setEncoding('utf8');
+  res.on('data', function (chung) {
+  buf += chung;
+  });
+  res.on('end', function(){
+  console.log (buf.length);
+  console.log(buf);
+  });
+  // console.log (buf);
+  
+});
+
