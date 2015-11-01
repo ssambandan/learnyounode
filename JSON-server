@@ -1,0 +1,36 @@
+var ht = require('http')
+var url = require('url')
+var req_url = '';
+
+console.log (process.argv[2]);
+
+var server = ht.createServer();
+
+
+
+server.on('request', function (req, res) {
+
+	
+	soho = url.parse(req.url, true);
+
+	console.log (soho);
+
+	res.writeHead(200, {'Content-Type': 'application/json'});
+
+	if (soho.pathname == '/api/unixtime'){
+    res.write(JSON.stringify('I got Unixtime')) }
+
+    else if (soho.pathname == '/api/parsetime') {
+    res.write(JSON.stringify('I got Parsetime'))
+    };
+
+	res.end();
+	
+
+
+})
+
+
+server.listen (process.argv[2] , function(){
+	console.log('I am listening')
+});
